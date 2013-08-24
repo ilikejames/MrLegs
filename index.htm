@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Mr Legs - Game out now</title>
+		<meta id="myViewport" name="viewport" content="width =620"/>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+		<meta property="fb:page_id" content="263643193682562"/>
+		<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/3.11.0/build/cssreset/cssreset-min.css">
+		<link rel="stylesheet" type="text/css" href="css/style.css">
+		<link href='http://fonts.googleapis.com/css?family=Parisienne' rel='stylesheet' type='text/css'>
+		<link href="http://2.mrlegs.net/favicon.ico" rel="shortcut icon" sizes="16x16 32x32 64x64"/>
+	</head>
+	<body>
+		<div id="frame">
+			<div id="birds"></div>
+			<div id="film"></div>
+
+			<div id="page">
+
+				<div id="main">
+
+					<h1 id="logo" class="sprite">Mr Legs - 미스터 래그스</h1>
+
+					<a id="love-life" href="http://www.gamezebo.com/games/mr-legs/review" target="_new">
+						<figure >
+							<blockquote cite="http://www.gamezebo.com/games/mr-legs/review">
+								If you love life, you'll love Mr&nbsp;Legs.
+							</blockquote>
+							<figcaption>
+								9/10 <cite>Gamezebo</cite>
+							</figcaption>
+						</figure>
+					</a>
+
+					<div id="app-store">
+						<a href="https://play.google.com/store/apps/details?id=com.something.mrlegs&hl=en" class="sprite play"/>
+						<a href="#soon" class="sprite iphone"/>
+					</div>
+						
+					<div id="video">
+		         		<iframe src="http://www.youtube.com/embed/Ht-8-GOK4W0" frameborder="0" width="560" height="600"></iframe>
+					</div>
+
+					<a id="pocketgamer" class="sprite" 
+						href="http://www.pocketgamer.co.uk/r/Android/Mr+Legs/review.asp?c=37699" target="_new">
+						<blockquote cite="http://www.pocketgamer.co.uk/r/Android/Mr+Legs/review.asp?c=37699">
+								Pocket Gamer Gold Award
+						</blockquote>
+					</a>
+
+					<blockquote id="music">
+						Featuring music by Mozart, Bach, Debussey and many more!
+					</blockquote>
+
+					<div id="carousel"><!--img src="images/bomb.gif"/--></div>
+
+					<div id="facebook">
+						<div id="fb-root"></div>
+						<script>(function(d, s, id) {
+						  var js, fjs = d.getElementsByTagName(s)[0];
+						  if (d.getElementById(id)) return;
+						  js = d.createElement(s); js.id = id;
+						  js.src = "//connect.facebook.net/en_GB/all.js#xfbml=1";
+						  fjs.parentNode.insertBefore(js, fjs);
+						}(document, 'script', 'facebook-jssdk'));</script>
+
+						<div class="fb-like" data-href="http://facebook.com/mrlegsgame" data-width="600" data-colorscheme="dark" data-show-faces="true" data-send="false"></div>
+					</div>
+
+					<div id="contact">
+						I love hearing from you. Contact me via the <a href="http://facebook.com/MrLegsGame">Mr Legs' Facebook Page</a> via <a href="mailto:james.mountain@gmail.com">james.mountain@gmail.com</a>, or twitter <a href="http://twitter.com/jammed">@jammed</a>.
+					</div>
+
+					<div id="copyright">
+						&copy; 2013
+					</div>
+
+					<span id="font-loader">&nbsp;0123456789</span>
+
+				</div>
+			</div>
+		</div>
+
+		<audio id="soundExplosion" preload="auto">
+		  <source src="sounds/explosion.mp3" type="audio/mp3"/>
+		  <source src="sounds/explosion.ogg" type="audio/ogg"/>
+		  <source src="sounds/explosion.wav" type="audio/wav"/>
+		</audio>
+		<audio id="soundScream" preload="auto">
+		  <source src="sounds/scream.mp3" type="audio/mp3"/>
+		  <source src="sounds/scream.ogg" type="audio/ogg"/>
+		  <source src="sounds/scream.wav" type="audio/wav"/>
+		</audio>
+		<audio id="soundBirdDeath" preload="auto">
+		  <source src="sounds/birddeath.mp3" type="audio/mp3"/>
+		  <source src="sounds/birddeath.ogg" type="audio/ogg"/>
+		  <source src="sounds/birddeath.wav" type="audio/wav"/>
+		</audio>
+
+		<div id="iphone-not-ready">
+			<h1>Coming soon</h1>
+			<p>iPhone <em>&</em> iPad versions will be available shortly.</p>
+			<p>In the meantime <a href="http://www.facebook.com/MrLegsGame">follow me on facebook</a> for the latest news.</p>
+		</div>
+
+
+		<script type="text/javascript" src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.5.5.min.js"></script>
+		<script type="text/javascript" src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+		<script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+		<!--<script type="text/javascript" src="js/lib/jquery.simplemodal.js"></script>
+		<script type="text/javascript" src="js/soundmanager.js"></script>
+		<script type="text/javascript" src="js/bird.js"></script>
+		<script type="text/javascript" src="js/bombui.js"></script>
+		<script type="text/javascript" defer="defer" src="js/app.js"></script>-->
+		<script type="text/javascript" defer="defer" src="js/default.js"></script>
+
+		<script type="text/javascript">
+			  var _gaq = _gaq || [];
+			  _gaq.push(['_setAccount', 'UA-26251464-1']);
+			  _gaq.push(['_trackPageview']);
+
+			  (function() {
+			    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			  })();
+		</script>
+
+		
+	</body>
+</html>
