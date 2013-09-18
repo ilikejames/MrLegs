@@ -7,11 +7,13 @@ var birdAnimations = (function(){
 		_image,
 		_stage,
 		_hasReachedLimit = false,
-		_originalSpawnFrequency = 5400,
+		_originalSpawnFrequency = 8400,
 		_spawnFrequency = _originalSpawnFrequency,
 		_deadCount = 0,
 		_scaleModifier = 1,
-		_birdCount = 0;
+		_birdCount = 0,
+		_crosshairsLayer,
+		_crosshairs;
 
 	function getFrames() {
 		var dimensions = {width:200, height:210, cols : 4, rows: 2};
@@ -42,7 +44,6 @@ var birdAnimations = (function(){
 			y = Math.floor(Math.random()*((_stage.getHeight()-150)/(speed/5))); // smaller should be near top			
 		}
 		
-
 		var scale = 1.8/speed * _scaleModifier, // faster, should be smaller to appear further away
 			size  = 400,
 			width = scale * size,
@@ -95,11 +96,47 @@ var birdAnimations = (function(){
 		_image.onload = createBird;
 		_image.src='images/birdsprite.png';
 
+		_crosshairsLayer = new Kinetic.Layer({
+			x: 0, 
+			y: 0,
+			width : stage.getWidth(),
+			height : stage.getHeight(),
+			fill : 'red'
+		});
+		_stage.add(_crosshairsLayer);
+		//var rect = new Kinetic.Rect({ width:100, height: 100, x: 100, y: 100, fill:'red'});
+		//_crosshairsLayer.add(rect);
+
+		var crosshair = new Image();
+		crosshair.onload = _.bind(createCrossHairs, this, crosshair);
+		crosshair.src = 'images/crosshair.png';
+
 		soundmanager.preloadSounds(['soundBirdDeath']);
+
+		$(window).on('mousemove', _.throttle(onMouseMove, 25 /* 40 fps */));
+	}
+
+	function createCrossHairs(image) {
+		_crosshairs = new Kinetic.Image({
+			image : image,
+			name : 'crosshair',
+			x : 0,
+			y: 0,
+			offset : {x: 55, y: 56},
+			opacity : 0.5
+		});
+		_crosshairsLayer.add(_crosshairs);
+		_crosshairsLayer.draw();
+	}
+
+	function onMouseMove(e) {
+		if(!_crosshairs) return;
+		_crosshairs.setAttrs({x: e.pageX, y: e.pageY, visible: e.target.tagName!='A'});
+		_crosshairsLayer.draw();
 	}
 
 	function onClick(pos) {
-		var obj = _stage.getIntersection(pos);
+		var obj = _layer.getIntersection(pos);
 		if(!obj || !obj.shape) return;
 		obj = obj.shape;
 		_birdCount--;
@@ -114,12 +151,12 @@ var birdAnimations = (function(){
 		}
 
 		if((_deadCount % 10)==0){
-			_scaleModifier*= (_deadCount > 30) ? 30 : _deadCount;
+			_scaleModifier*= (_deadCount > 20) ? 20 : _deadCount;
 			_spawnFrequency*=3;
 			setTimeout(function() {
 				_scaleModifier=1;
 				_spawnFrequency=_originalSpawnFrequency;
-			},4000);
+			},6000);
 		}
 
 		// kill it
