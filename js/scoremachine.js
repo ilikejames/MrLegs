@@ -1,4 +1,4 @@
-
+/*
 var scoremachine = (function(){
 	
 	var layer;
@@ -88,3 +88,4 @@ var scoremachine = (function(){
 
 
 })();
+*/
