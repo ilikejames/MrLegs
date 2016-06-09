@@ -1,0 +1,14 @@
+{
+  "presets": ["es2015"],
+  "env": {
+    "development": {
+      "presets": []
+    }
+  },
+  "plugins": [
+  		"syntax-export-extensions",
+  		"transform-object-rest-spread",
+  		"es6-promise"
+  	]
+
+}
