@@ -17,7 +17,7 @@ export default function BirdAnimation(stage, layer) {
 		_crosshairsLayer,
 		_crosshairs;
 
-	const mousemoveListener = _.throttle(onMouseMove, 25);
+	const mousemoveListener = _.throttle(onMouseMove, 10);
 
 	function start() {
 
@@ -41,7 +41,7 @@ export default function BirdAnimation(stage, layer) {
 		preloadSounds(['soundBirdDeath']);
 
 		window.addEventListener('mousemove', mousemoveListener);
-		//$(window).on('mousemove', _.throttle(onMouseMove, 25 /* 40 fps */));
+
 	}
 
 	function destroy() {

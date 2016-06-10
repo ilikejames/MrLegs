@@ -3,7 +3,7 @@ var birdAnimations = (function(){
 
 	'use strict';
 
-	var _layer, 
+	var _layer,
 		_image,
 		_stage,
 		_hasReachedLimit = false,
@@ -34,16 +34,16 @@ var birdAnimations = (function(){
 	function createBird() {
 
 		_birdCount++;
-		var speed = Math.floor(Math.random() * 12)+4 + (_originalSpawnFrequency/_spawnFrequency); 
+		var speed = Math.floor(Math.random() * 12)+4 + (_originalSpawnFrequency/_spawnFrequency);
 		var y;
 
 		if(_scaleModifier>5) {
 			y = Math.floor(Math.random()*((_stage.getHeight()-150)));
 		}
 		else {
-			y = Math.floor(Math.random()*((_stage.getHeight()-150)/(speed/5))); // smaller should be near top			
+			y = Math.floor(Math.random()*((_stage.getHeight()-150)/(speed/5))); // smaller should be near top
 		}
-		
+
 		var scale = 1.8/speed * _scaleModifier, // faster, should be smaller to appear further away
 			size  = 400,
 			width = scale * size,
@@ -97,15 +97,13 @@ var birdAnimations = (function(){
 		_image.src='images/birdsprite.png';
 
 		_crosshairsLayer = new Kinetic.Layer({
-			x: 0, 
+			x: 0,
 			y: 0,
 			width : stage.getWidth(),
 			height : stage.getHeight(),
 			fill : 'red'
 		});
 		_stage.add(_crosshairsLayer);
-		//var rect = new Kinetic.Rect({ width:100, height: 100, x: 100, y: 100, fill:'red'});
-		//_crosshairsLayer.add(rect);
 
 		var crosshair = new Image();
 		crosshair.onload = _.bind(createCrossHairs, this, crosshair);

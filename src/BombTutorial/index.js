@@ -38,7 +38,6 @@ export default function BombTutorial(container) {
 	}
 
 	function onBackgroundLoaded() {
-		debugger;
         var background = new Kinetic.Image({
           x: 0,
           y: 0,

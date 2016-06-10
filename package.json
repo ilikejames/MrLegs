@@ -53,5 +53,7 @@
     "style-loader": "^0.13.1",
     "webpack": "^1.13.0"
   },
-  "dependencies": {}
+  "dependencies": {
+    "eventemitter3": "^1.2.0"
+  }
 }

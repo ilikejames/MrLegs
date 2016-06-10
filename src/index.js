@@ -1,23 +1,31 @@
 
 import Kinetic from 'kinetic'
-import BirdAnimation from './BirdAnimation'
+//import BirdAnimation from './BirdAnimation'
+import BirdGame from './BirdGame'
 import BombTutorial from './BombTutorial'
 import './googleAnalytics';
 
 
 function init() {
 
-	const stage = new Kinetic.Stage({
-	    container: 'birds',
-	    width: window.innerWidth,
-	    height: window.innerHeight
-	 });
+	// const stage = new Kinetic.Stage({
+	//     container: 'birds',
+	//     width: window.innerWidth,
+	//     height: window.innerHeight
+	//  });
 
-	const layer = new Kinetic.Layer({ width:stage.getWidth(), height:stage.getHeight() });
-	stage.add(layer);
+	// const layer = new Kinetic.Layer({ width:stage.getWidth(), height:stage.getHeight() });
+	// stage.add(layer);
 
-	const birds = new BirdAnimation(stage, layer);
-	birds.start();
+	// const birds = new BirdAnimation(stage, layer);
+	// birds.start();
+	//
+	const birdGame = new BirdGame({
+		container : 'birds',
+		width : window.innerWidth,
+		height : window.innerHeight
+	});
+
 
 	var bombTutorial = new BombTutorial('carousel');
 	bombTutorial.setWidth(document.querySelector('#carousel').scrollWidth);
