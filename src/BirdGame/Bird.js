@@ -1,57 +1,46 @@
 
-import Kinetic from 'Kinetic'
+import {Sprite, Tween, Easings} from 'konva'
 import animations from './BirdSpriteFrames'
 import birdImage from './BirdImageData'
 import {playSound} from 'SoundManager'
 
-const speedMod = 1
 const sprite = {
-	width : 400,
-	height : 150
+	width : 200,
+	height : 400,
+	frame : 8
 }
+
+const strokeWidth = 1;
 
 const image = new Image();
 image.src=birdImage;
 
 
 
-export default class Bird extends Kinetic.Sprite {
+export default class Bird extends Sprite {
 
-	constructor(stageWidth, stageHeight, frequency) {
+	constructor(stageWidth, stageHeight, frequency=1, scaleMultiplier = 1) {
 
-		let index =  Math.floor(Math.random() * 8); // + (_originalSpawnFrequency/_spawnFrequency)
+		let speed = Math.floor(Math.random() * 12) + 4 + frequency;
 		let frameRate = Math.floor(Math.random() * 12) + 4 + frequency;
-		let scale = 1.8 / index * speedMod;
+		let scale = 1.8 / speed * scaleMultiplier;
 		let y = Math.floor(Math.random() * (stageHeight - sprite.height));
-		let x = stageWidth;
-		let duration = stageWidth / (scale * sprite.width);
-		let data = {
-			x,
+
+		super({
+			x : stageWidth,
 			y,
 			image,
-			scale,
+			scale : { x : scale, y : scale },
 			animation : 'flight',
 			animations,
 			frameRate : frameRate,
-			frameIndex : index
-		}
+			fill : 'transparent',
+			strokeWidth : strokeWidth/scale,
+			frameIndex : Math.floor(Math.random() * sprite.frames)
+		})
 
-		super(data);
-
-		this.listeners = {};
 		this.stageHeight = stageHeight;
-
-
-		this.tween = new Kinetic.Tween({
-			node: this,
-			duration: duration,
-			x: -sprite.width,
-			onFinish : () => {
-				//this.tween.node.destroy();
-				this.destroy();
-				this.trigger('end');
-			}
-		});
+		this.stageWidth = stageWidth;
 
 	}
 
@@ -60,43 +49,43 @@ export default class Bird extends Kinetic.Sprite {
 	}
 
 	start() {
+
+		if(!this.tween) {
+			this.tween = new Tween({
+				node: this,
+				duration: this.stageWidth / (this.attrs.scaleX * sprite.width),
+				x: -sprite.width * this.attrs.scaleX,
+				onFinish : () => {
+					this.destroy();
+					this.fire('end', null);
+				}
+			});
+		}
+
 		super.start()
 		this.tween.play();
 	}
 
 	pause() {
-		super.pause();
+		super.stop();
 		this.tween.pause();
 	}
 
-	trigger(type) {
-		if(!this.listeners[type]) return;
-		this.listeners[type].forEach(x => x());
-	}
+	setOver(is) {
+		if(is && !this.isDying) {
+			// this.setStroke('#aaaaaa');
+			this.setStroke('rgba(0,0,0,0.4');
+			//this.setScale({ x : this.attrs})
+		}
+		else {
+			this.setStroke('transparent');
+		}
 
-	subscribe(type, fn) {
-
-		var isSubscribed = true;
-		this.listeners[type] = this.listeners[type] || [];
-		this.listeners[type].push(fn);
-
-		return function unsubscribe() {
-
-			if (!isSubscribed) {
-				return
-			}
-
-			isSubscribed = false
-
-			var index = this.listeners[type].indexOf(fn)
-			this.listeners.splice(index, 1)
-
-		}.bind(this);
 	}
 
 	die() {
 
-		this.trigger('kill');
+		this.fire('kill', null);
 
 		playSound('soundBirdDeath');
 
@@ -104,17 +93,22 @@ export default class Bird extends Kinetic.Sprite {
 		var a = 200; //  pixels per second
 		var t = Math.sqrt(d/a);
 
-		var tween = new Kinetic.Tween({
+		super.stop();
+		this.isDying = true;
+
+		this.setOver(false);
+
+		this.tween = new Tween({
 			node: this,
 			duration: t,
-			easing : Kinetic.Easings.EaseIn,
+			easing : Easings.EaseIn,
 			y: this.stageHeight + this.getHeight(),
 			onFinish : () => {
 				this.destroy();
-				this.trigger('dead');
+				this.fire('dead', null);
 			}
 		});
-		tween.play();
+		this.tween.play();
 	}
 
 }

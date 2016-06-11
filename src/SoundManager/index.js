@@ -1,7 +1,4 @@
 
-import _ from 'lodash';
-
-
 let cachedSounds = {};
 
 
@@ -17,7 +14,7 @@ export function preloadSounds(sounds) {
 				s.pause();
 				s.currentTime=0;
 				s.volume=0.2;
-			}, 10);
+			}, 100);
 		}
 	});
 

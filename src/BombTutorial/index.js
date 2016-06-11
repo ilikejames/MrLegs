@@ -1,5 +1,5 @@
 
-import Kinetic from 'kinetic'
+import Kinetic from 'konva'
 import manAnimation from './manSprite'
 import textAnimation from './textSprite'
 import {preloadSounds, playSound} from 'SoundManager'
@@ -103,9 +103,9 @@ export default function BombTutorial(container) {
 			frameRate : 10
 		});
 
-		bomb.on('mouseover', _.partial(setCursor,'mouseover'));
-		bomb.on('mouseout', _.partial(setCursor,'mouseout'));
-		bomb.on('click touchstart', _.partial(onBombClick, index));
+		bomb.on('mouseover', setCursor.bind(this, 'mouseover'));
+		bomb.on('mouseout', setCursor.bind(this,'mouseout'));
+		bomb.on('click touchstart', onBombClick.bind(this, index));
 		return bomb;
 	}
 
