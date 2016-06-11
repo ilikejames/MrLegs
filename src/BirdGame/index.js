@@ -35,9 +35,10 @@ export default class BirdGame extends Stage {
 		window.addEventListener('click', () => {
 			if(!this.lastOver) return;
 			this.lastOver.die();
+			this.lastOver = undefined;
 			this.kills++;
 
-			if((this.kills % 2)==0) {
+			if((this.kills % 10)==0) {
 				// spawn!
 				this.spawnFrequency *=0.3;
 				this.scaleModifier = defaultLargeScale;

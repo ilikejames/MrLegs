@@ -1,27 +1,42 @@
 
 import BirdGame from './BirdGame'
 import BombTutorial from './BombTutorial'
-import './googleAnalytics';
+import './googleAnalytics'
+import './fb'
 
+
+var birdGame;
+var bombTutorial;
 
 function init() {
 
-	const birdGame = new BirdGame({
+	birdGame = new BirdGame({
 		container : 'birds',
 		width : window.innerWidth,
 		height : window.innerHeight
 	});
 
-	var bombTutorial = new BombTutorial('carousel');
-	bombTutorial.setWidth(document.querySelector('#carousel').scrollWidth);
+	// var bombTutorial = new BombTutorial('carousel');
+	// bombTutorial.setWidth(document.querySelector('#carousel').scrollWidth);
+	let w =  document.querySelector('#carousel').scrollWidth;
+	bombTutorial = new BombTutorial({
+		width : 1280,
+		height : 780,
+		container : 'carousel'
+	});
+	bombTutorial.scale({ x : w/1280, y: w/1280 });
+
 }
 
 
 
 function onWindowResize(e) {
-	// bombui.setWidth($('#carousel').width());
-	// stage.setWidth($(document).width());
-	// stage.setHeight($(document).height());
+
+	let w =  document.querySelector('#carousel').scrollWidth;
+	bombTutorial.scale({ x : w/1280, y: w/1280 });
+
+	//birdGame.setWidth()
+
 }
 
 // $('#app-store .iphone').click(function (e) {

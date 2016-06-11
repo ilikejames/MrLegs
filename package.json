@@ -55,6 +55,8 @@
   },
   "dependencies": {
     "eventemitter3": "^1.2.0",
+    "image-promise": "^1.0.4",
+    "img-async": "^1.0.0",
     "konva": "^0.13.0"
   }
 }

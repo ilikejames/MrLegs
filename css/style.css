@@ -225,7 +225,7 @@ body {
 #carousel {
 	margin:0 20px;
 	text-align: center;
-	overflow: hidden;
+	/*overflow: hidden;*/
 	max-height: 450px;
 	min-height: 232px;
 }
